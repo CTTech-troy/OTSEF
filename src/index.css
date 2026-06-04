@@ -1,12 +1,9 @@
 /* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap');
-
 /* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
 @import "tailwindcss";
 @config "../tailwind.config.js";
-
 /* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
-
 @layer base {
   :root {
     --background: #ffffff;
@@ -77,6 +74,11 @@
   }
   .font-serif {
     font-family: 'Instrument Serif', 'Georgia', serif;
+  }
+  .font-logo {
+    font-family: 'Roboto Condensed', 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
   }
   .editorial-italic {
     font-family: 'Instrument Serif', 'Georgia', serif;
