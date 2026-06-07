@@ -29,7 +29,7 @@ export function WhyChoose() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
           <div className="lg:col-span-5">
             <div className="font-mono text-xs text-primary-strong mb-4 uppercase tracking-wider">
-              — Why OTSEF
+              â€” Why OTSEF
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.05] mb-6">
               Trust, built on{' '}

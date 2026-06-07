@@ -8,6 +8,10 @@ const navLinks = [
     path: '/',
   },
   {
+    name: 'About',
+    path: '/about',
+  },
+  {
     name: 'Projects',
     path: '/projects',
   },
@@ -15,6 +19,7 @@ const navLinks = [
     name: 'Contact',
     path: '/contact',
   },
+  
 ]
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)

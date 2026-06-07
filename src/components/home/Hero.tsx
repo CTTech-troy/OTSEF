@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 export function Hero() {
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-background">
+      <div className="absolute inset-x-0 top-0 h-full grid-pattern opacity-60 pointer-events-none" />
       {/* Soft ambient backdrop */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-[600px] bg-primary/5 blur-[160px] rounded-full pointer-events-none" />
 
@@ -28,7 +29,7 @@ export function Hero() {
               <span className="relative rounded-full w-2 h-2 bg-primary" />
             </span>
             <span className="font-mono text-xs text-primary-strong tracking-wider uppercase font-semibold">
-              Now active in Lagos, Nigeria
+               Off The Streets Educational Foundation
             </span>
           </motion.div>
 
@@ -69,8 +70,7 @@ export function Hero() {
             }}
             className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            We help young people in Lagos stay in school, find mentorship, and
-            build lives of purpose.
+            Empowering children and young people through education, mentorship, vocational development, and community support. 
           </motion.p>
 
           <motion.div

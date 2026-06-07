@@ -10,6 +10,11 @@ const Projects = lazy(() =>
     default: m.Projects,
   })),
 )
+const About = lazy(() =>
+  import('./pages/About').then((m) => ({
+    default: m.About,
+  })),
+)
 const Contact = lazy(() =>
   import('./pages/Contact').then((m) => ({
     default: m.Contact,
@@ -32,6 +37,7 @@ export function App() {
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/contact" element={<Contact />} />
               {/* Legacy redirects — anything else falls back to home */}

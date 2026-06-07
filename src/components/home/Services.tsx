@@ -3,30 +3,30 @@ import { BookOpen, Compass, Wrench, HeartHandshake } from 'lucide-react'
 const services = [
   {
     number: '01',
-    title: 'Educational Empowerment',
+    title: 'Education Support',
     description:
-      'Scholarships, resources, and academic support that keep students in school.',
+      'Providing books, learning materials, and educational assistance to help children remain in school. ',
     icon: BookOpen,
   },
   {
     number: '02',
-    title: 'Transition Support',
+    title: 'Mentorship & Guidance',
     description:
-      'Guidance through the leap from secondary school into university and beyond.',
+      'Connecting young people with positive role models, guidance, and life skills.',
     icon: Compass,
   },
   {
     number: '03',
-    title: 'Vocational Training',
+    title: 'Vocational Development ',
     description:
-      'Practical, market-ready skills for immediate economic empowerment.',
+      'Creating pathways to practical skills, entrepreneurship, and career opportunities. ',
     icon: Wrench,
   },
   {
     number: '04',
-    title: 'Street-to-School',
+    title: 'Community Partnerships ',
     description:
-      'Structured pathways back into formal education for out-of-school children.',
+      'Working with schools, businesses, volunteers, and organizations to expand our impact.',
     icon: HeartHandshake,
   },
 ]
@@ -36,7 +36,7 @@ export function Services() {
       <div className="container mx-auto px-6 lg:px-12">
         <div className="max-w-3xl mb-16">
           <div className="font-mono text-xs text-primary-strong mb-4 uppercase tracking-wider">
-            — What we do
+            - What we do
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.05]">
             Four programs.{' '}

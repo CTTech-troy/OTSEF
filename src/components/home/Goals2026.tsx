@@ -46,7 +46,7 @@ export function Goals2026() {
       <div className="container mx-auto px-6 lg:px-12">
         <div className="max-w-3xl mb-16">
           <div className="font-mono text-xs text-primary-strong mb-4 uppercase tracking-wider flex items-center gap-3">
-            <span>— Roadmap</span>
+            <span>â€” Roadmap</span>
             <span className="px-2 py-0.5 rounded-full bg-primary text-white text-[10px] font-bold">
               2026
             </span>

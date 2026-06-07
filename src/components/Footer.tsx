@@ -2,13 +2,12 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { Mail } from 'lucide-react'
 import { FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
+
 export function Footer() {
   return (
     <footer className="bg-white border-t border-slate-200">
       <div className="container mx-auto px-6 lg:px-12 py-12 lg:py-16">
-        {/* Top row: logo left, everything else centered in the middle */}
         <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-8 pb-10 border-b border-slate-200">
-          {/* Left — Logo */}
           <div className="flex justify-center md:justify-start">
             <Link
               to="/"
@@ -27,7 +26,6 @@ export function Footer() {
             </Link>
           </div>
 
-          {/* Center — Nav + Socials */}
           <div className="flex flex-col items-center gap-5 md:col-span-1">
             <nav className="flex items-center gap-6" aria-label="Footer">
               <Link
@@ -35,6 +33,12 @@ export function Footer() {
                 className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
               >
                 Home
+              </Link>
+              <Link
+                to="/about"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+              >
+                About
               </Link>
               <Link
                 to="/projects"
@@ -73,14 +77,12 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Right — empty spacer for visual balance */}
           <div className="hidden md:block" />
         </div>
 
-        {/* Bottom bar — centered */}
         <div className="pt-8 flex flex-col items-center text-center gap-2 text-sm text-slate-500">
           <p>
-            © {new Date().getFullYear()} Off The Streets Educational
+            &copy; {new Date().getFullYear()} Off The Streets Educational
             Foundation. Lagos, Nigeria.
           </p>
           <p className="font-mono text-xs uppercase tracking-wider">
@@ -91,6 +93,7 @@ export function Footer() {
     </footer>
   )
 }
+
 function SocialLink({
   icon,
   href,

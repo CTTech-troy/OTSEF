@@ -8,7 +8,7 @@ const testimonials = [
   },
   {
     quote:
-      "The vocational program didn't just teach me a skill — it gave me the confidence to start my own business.",
+      "The vocational program didn't just teach me a skill â€” it gave me the confidence to start my own business.",
     name: 'Sarah T.',
     role: 'Vocational Graduate',
   },
@@ -25,7 +25,7 @@ export function Testimonials() {
       <div className="container mx-auto px-6 lg:px-12">
         <div className="max-w-3xl mb-16">
           <div className="font-mono text-xs text-primary-strong mb-4 uppercase tracking-wider">
-            — What they say
+            â€” What they say
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.05]">
             Lives, changed in their{' '}

@@ -14,13 +14,13 @@ export function InlineContact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-5">
             <div className="font-mono text-xs text-primary-strong mb-4 uppercase tracking-wider">
-              — Contact
+              â€” Contact
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.05] mb-8">
               Let's start a conversation.
             </h2>
             <p className="text-lg text-slate-600 leading-relaxed mb-10 max-w-md">
-              Whether you want to partner, sponsor, or simply learn more — we'd
+              Whether you want to partner, sponsor, or simply learn more â€” we'd
               love to hear from you.
             </p>
 
