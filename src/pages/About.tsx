@@ -371,7 +371,7 @@ export function About() {
               </div>
               <div className="mt-8 border-t border-slate-200 pt-6">
                 <p className="text-xl font-bold tracking-normal text-slate-900">
-                  Akinola Sheadrack (Pesinpapa)
+                  Akinola Shadrack (Pesinpapa)
                 </p>
                 <p className="mt-1 text-sm font-medium uppercase tracking-wider text-primary-strong">
                   Founder
