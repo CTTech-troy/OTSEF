@@ -66,7 +66,7 @@ export function AboutSnapshot() {
             </h2>
 
             <p className="text-lg text-slate-600 leading-relaxed mb-10 max-w-xl">
-              OTSEF Foundation is a nonprofit organization committed to helping vulnerable children and young people access educational opportunities, mentorship, vocational skills, and the support they need to build meaningful futures.
+              OTSEF is a nonprofit organization committed to helping vulnerable children and young people access educational opportunities, mentorship, vocational skills, and the support they need to build meaningful futures.
             </p>
 
             <div className="mb-10">
@@ -88,7 +88,7 @@ export function AboutSnapshot() {
                 </div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-slate-900 mb-1">15</div>
+                <div className="text-2xl font-bold text-slate-900 mb-1">1</div>
                 <div className="text-xs text-slate-500 uppercase tracking-wider font-medium">
                   Programs
                 </div>

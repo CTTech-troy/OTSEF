@@ -22,14 +22,14 @@ export function Hero() {
             transition={{
               duration: 0.5,
             }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary-soft mb-8"
+            className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-primary/20 bg-primary-soft px-2.5 py-1.5 sm:gap-2 sm:px-3 mb-8"
           >
             <span className="relative flex w-2 h-2">
               <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
               <span className="relative rounded-full w-2 h-2 bg-primary" />
             </span>
-            <span className="font-mono text-xs text-primary-strong tracking-wider uppercase font-semibold">
-               Off The Streets Educational Foundation
+            <span className="font-mono text-[10px] text-primary-strong uppercase font-semibold tracking-[0.08em] sm:text-xs sm:tracking-wider">
+              Off The Streets Educational Foundation
             </span>
           </motion.div>
 
@@ -119,7 +119,7 @@ export function Hero() {
           >
             <Stat value="100+" label="Students" />
             <Stat value="Growing" label="Partners" />
-            <Stat value="95%" label="Completion" />
+            <Stat value="13" label="Libraries supported" />
           </motion.div>
         </div>
       </div>

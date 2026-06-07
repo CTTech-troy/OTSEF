@@ -106,6 +106,20 @@ const futureGoals = [
   },
 ]
 
+const founderMessage = [
+  'My journey is deeply connected to the mission of OTSEF.',
+  'At the age of ten, I lost my father. Following his passing, my mother carried the responsibility of raising and supporting our family despite significant challenges. Through determination, sacrifice, and an unwavering belief in the value of education, she ensured that I remained in school and eventually gained admission into the university.',
+  'Sadly, not every child has that opportunity.',
+  'Across many communities, children and young people lose parents, guardians, sponsors, or support systems that are critical to their education and development. When this happens, many are forced to abandon their educational goals, miss out on career opportunities, or struggle to acquire the skills needed to build independent and productive lives.',
+  "Having experienced these realities firsthand, I understand how a single opportunity, a mentor, a scholarship, a donated book, a supportive teacher, or a vocational training programme can change the course of a young person's future.",
+  'This understanding inspired the creation of Off The Streets Educational Foundation (OTSEF).',
+  'OTSEF exists to help bridge the gap between potential and opportunity. Through educational support, mentorship, career guidance, and vocational skills development, we work to ensure that children and young people have access to the resources, knowledge, and support they need to make informed life and career choices.',
+  'Our vision is not simply to provide temporary assistance. We aim to create pathways that help young people remain in school, develop practical skills, build confidence, and prepare for meaningful futures.',
+  'While our journey is still growing, our commitment is clear. We are building an organization rooted in compassion, accountability, partnership, and sustainable impact.',
+  'I invite individuals, schools, businesses, volunteers, and development partners to join us in creating opportunities for children and young people who deserve the chance to learn, grow, and succeed.',
+  'Together, we can help turn challenges into opportunities and potential into achievement.',
+]
+
 export function About() {
   return (
     <div className="flex flex-col bg-background">
@@ -329,56 +343,50 @@ export function About() {
 
       <section className="bg-background-soft py-20 lg:py-28">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <motion.figure
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6 }}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft-lg lg:col-span-5"
-            >
-              <img
-                src="/img/founder.png"
-                alt="OTSEF school outreach with school leadership"
-                loading="lazy"
-                decoding="async"
-                className="aspect-[4/5] w-full object-cover object-center"
-              />
-            </motion.figure>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-6xl"
+          >
+            <div className="mb-4 font-mono text-xs font-semibold uppercase text-primary-strong">
+              Founder's Message
+            </div>
+            <blockquote className="mb-8 max-w-4xl text-3xl font-bold leading-tight tracking-normal text-slate-900 md:text-4xl">
+              Every child deserves the opportunity to dream, learn, and
+              succeed.
+            </blockquote>
 
-            <div className="lg:col-span-7">
-              <div className="mb-4 font-mono text-xs font-semibold uppercase text-primary-strong">
-                Founder's Message
-              </div>
-              <blockquote className="mb-8 max-w-3xl text-3xl font-bold leading-tight tracking-normal text-slate-900 md:text-4xl">
-                Every child deserves the opportunity to dream, learn, and
-                succeed.
-              </blockquote>
-              <div className="max-w-3xl space-y-5 text-lg leading-relaxed text-slate-600">
-                <p>
-                  OTSEF was founded from a simple belief: when young people
-                  receive the right support, guidance, and opportunities, they
-                  are better positioned to overcome challenges and build
-                  meaningful futures.
-                </p>
-                <p>
-                  Across many communities, children and youths face obstacles
-                  that limit their educational and personal development. OTSEF
-                  exists to address these challenges through practical,
-                  community-focused initiatives that support educational
-                  achievement, personal development, and skills acquisition.
-                </p>
-              </div>
-              <div className="mt-8 border-t border-slate-200 pt-6">
-                <p className="text-xl font-bold tracking-normal text-slate-900">
-                  Akinola Shadrack (Pesinpapa)
-                </p>
-                <p className="mt-1 text-sm font-medium uppercase tracking-wider text-primary-strong">
-                  Founder
-                </p>
+            <div className="text-lg leading-relaxed text-slate-600">
+              <figure
+                className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft-lg md:float-left md:mb-6 md:mr-10 md:w-[min(44%,28rem)] lg:w-[min(40%,30rem)]"
+              >
+                <img
+                  src="/img/founder.png"
+                  alt="OTSEF school outreach with school leadership"
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/5] w-full object-cover object-center"
+                />
+              </figure>
+
+              <div className="space-y-5">
+                {founderMessage.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
             </div>
-          </div>
+
+            <div className="clear-both mt-8 border-t border-slate-200 pt-6">
+              <p className="text-xl font-bold tracking-normal text-slate-900">
+                Akiniola Shadrack (Pesinpapa)
+              </p>
+              <p className="mt-1 text-sm font-medium uppercase tracking-wider text-primary-strong">
+                Founder, Off The Streets Educational Foundation (OTSEF)
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
