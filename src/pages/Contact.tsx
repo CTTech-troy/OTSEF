@@ -42,19 +42,19 @@ export function Contact() {
                 <ContactItem
                   icon={Mail}
                   label="Email"
-                  value="contact@otsef.org"
-                  href="mailto:contact@otsef.org"
+                  value=" contactotsef@gmail.com"
+                  href="mailto: contactotsef@gmail.com"
                 />
                 <ContactItem
                   icon={Phone}
                   label="Phone"
-                  value="+234 800 000 0000"
-                  href="tel:+2348000000000"
+                  value="+234 802 844 9414 "
+                  href="tel:+234 802 844 9414 "
                 />
                 <ContactItem
                   icon={MapPin}
-                  label="Office"
-                  value="Victoria Island, Lagos, Nigeria"
+                  label="Contact address"
+                  value="No 21, Kosebinu Road, Meiran, Lagos, Nigeria"
                 />
               </div>
 

@@ -160,7 +160,7 @@ export function Projects() {
 
       <section className="py-20 lg:py-28 bg-ink text-white">
         <div className="container mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight mb-8 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight mb-8 max-w-3xl mx-auto text-white">
             Want to support the Book Distribution Initiative?
           </h2>
           <Link
