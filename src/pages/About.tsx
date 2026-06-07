@@ -348,7 +348,7 @@ export function About() {
 
             <div className="lg:col-span-7">
               <div className="mb-4 font-mono text-xs font-semibold uppercase text-primary-strong">
-                Founder message
+                Founder's Message
               </div>
               <blockquote className="mb-8 max-w-3xl text-3xl font-bold leading-tight tracking-normal text-slate-900 md:text-4xl">
                 Every child deserves the opportunity to dream, learn, and
@@ -507,7 +507,7 @@ export function About() {
               to="/projects"
               className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
             >
-              View projects
+              View our impact
             </Link>
           </div>
         </div>

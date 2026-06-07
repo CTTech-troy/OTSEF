@@ -29,7 +29,7 @@ export function CTASection() {
           }}
           className="max-w-4xl"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-8">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-8 text-white">
             Their future begins with{' '}
             <span className="editorial-italic font-normal text-primary">
               your support

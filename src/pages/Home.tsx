@@ -13,7 +13,7 @@ export function Home() {
       <AboutSnapshot />
       <Services />
       <WhyChoose />
-      <Goals2026 />
+      {/* <Goals2026 /> */}
       <Testimonials />
       <CTASection />
       <InlineContact />

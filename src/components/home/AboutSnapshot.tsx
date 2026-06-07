@@ -81,7 +81,7 @@ export function AboutSnapshot() {
             <div className="grid grid-cols-3 gap-6 max-w-lg">
               <div>
                 <div className="text-2xl font-bold text-slate-900 mb-1">
-                  2024
+                  2026
                 </div>
                 <div className="text-xs text-slate-500 uppercase tracking-wider font-medium">
                   Founded

@@ -2,24 +2,24 @@ import { motion } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
 const reasons = [
   {
-    title: 'Measurable outcomes',
+    title: 'Corporate Partners',
     description:
-      '95% program completion. 80% successful transitions. We track every student.',
+      'Support educational and youth development initiatives through funding, sponsorship, or resources.',
   },
   {
-    title: 'Built for scale',
+    title: 'School Partners',
     description:
-      'Our model is designed to replicate across Lagos and the broader African continent.',
+      'Collaborate on educational programs, mentorship activities, and student support initiatives.',
   },
   {
-    title: 'Trusted by institutions',
+    title: 'Volunteer Partners',
     description:
-      'Partnerships with UNICEF, government ministries, and leading universities.',
+      'Share your time, knowledge, and expertise to help young people thrive.',
   },
   {
-    title: '100% youth-focused',
+    title: 'Vocational Partners',
     description:
-      'Every program and every dollar is directed toward the young people we serve.',
+      'Provide practical skills training, apprenticeships, internships, or career development opportunities.',
   },
 ]
 export function WhyChoose() {
@@ -29,7 +29,7 @@ export function WhyChoose() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
           <div className="lg:col-span-5">
             <div className="font-mono text-xs text-primary-strong mb-4 uppercase tracking-wider">
-              â€” Why OTSEF
+              - Why OTSEF
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.05] mb-6">
               Trust, built on{' '}

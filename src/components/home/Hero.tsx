@@ -117,8 +117,8 @@ export function Hero() {
             }}
             className="grid grid-cols-3 gap-6 sm:gap-12 max-w-2xl mx-auto pt-10 border-t border-slate-200"
           >
-            <Stat value="500+" label="Students" />
-            <Stat value="25+" label="Partners" />
+            <Stat value="100+" label="Students" />
+            <Stat value="Growing" label="Partners" />
             <Stat value="95%" label="Completion" />
           </motion.div>
         </div>
