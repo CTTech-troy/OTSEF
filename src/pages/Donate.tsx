@@ -1,59 +1,15 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import {
   ArrowRight,
-  BookOpen,
   CalendarClock,
   CheckCircle2,
-  CreditCard,
-  GraduationCap,
-  HeartHandshake,
-  Landmark,
   Mail,
   Phone,
-  type LucideIcon,
-  Receipt,
   ShieldCheck,
-  Sparkles,
-  Users,
-  Wrench,
 } from 'lucide-react'
 
 const donationAmounts = [5000, 10000, 25000, 50000]
-
-const donationFocus = [
-  {
-    icon: GraduationCap,
-    title: 'Scholarships',
-    description:
-      'Support school retention, tuition assistance, and learning opportunities for children at risk of dropping out.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Educational materials',
-    description:
-      'Provide books, writing materials, library resources, and classroom support that help children learn with dignity.',
-  },
-  {
-    icon: Wrench,
-    title: 'Vocational training',
-    description:
-      'Help young people develop practical skills that can lead to employability, enterprise, and independence.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Youth empowerment',
-    description:
-      'Fund mentorship, career guidance, confidence building, and leadership programs for young people.',
-  },
-  {
-    icon: Users,
-    title: 'Community development',
-    description:
-      'Strengthen school, family, volunteer, and community partnerships that create lasting educational impact.',
-  },
-]
 
 const impactStats = [
   {
@@ -75,61 +31,6 @@ const impactStats = [
     value: 'More',
     label: 'Communities planned',
     detail: 'Future outreach will expand as donor and partner support grows.',
-  },
-]
-
-const donationMethods = [
-  {
-    icon: CreditCard,
-    title: 'Card payments',
-    status: 'Ready for gateway setup',
-    description:
-      'The page is structured for future card checkout integration with secure payment providers.',
-  },
-  {
-    icon: Landmark,
-    title: 'Bank transfer',
-    status: 'Available now',
-    description:
-      'Donors can support OTSEF through direct bank transfer using the foundation account details.',
-  },
-  {
-    icon: Receipt,
-    title: 'Paystack',
-    status: 'Integration placeholder',
-    description:
-      'A Paystack checkout button can be connected here when the merchant account is ready.',
-  },
-  {
-    icon: HeartHandshake,
-    title: 'Flutterwave',
-    status: 'Integration placeholder',
-    description:
-      'Flutterwave support can be enabled here for local and international donations.',
-  },
-]
-
-const stories = [
-  {
-    image: '/img/img10.jpg',
-    quote:
-      'Books placed in a library can keep serving children long after the first donation is made.',
-    name: 'School library partner',
-    role: 'Book Distribution Initiative',
-  },
-  {
-    image: '/img/img13.jpg',
-    quote:
-      'When young people receive learning support and guidance, they begin to see a future they can work toward.',
-    name: 'Community volunteer',
-    role: 'Youth empowerment support',
-  },
-  {
-    image: '/img/img14.jpg',
-    quote:
-      'A single opportunity can help a child stay in school, build confidence, and keep moving forward.',
-    name: 'OTSEF program team',
-    role: 'Education and mentorship',
   },
 ]
 
@@ -188,26 +89,6 @@ function SectionHeader({
           {description}
         </p>
       )}
-    </div>
-  )
-}
-
-function IconCard({
-  icon: Icon,
-  title,
-  description,
-}: {
-  icon: LucideIcon
-  title: string
-  description: string
-}) {
-  return (
-    <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-soft">
-      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary-strong">
-        <Icon className="h-6 w-6" aria-hidden="true" />
-      </div>
-      <h3 className="text-xl font-bold text-slate-900">{title}</h3>
-      <p className="mt-3 text-sm leading-7 text-slate-600">{description}</p>
     </div>
   )
 }
@@ -285,20 +166,7 @@ export function Donate() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="site-container">
-          <SectionHeader
-            eyebrow="Why your donation matters"
-            title="Every gift helps close the gap between potential and opportunity."
-            description="Donations strengthen practical programs that help children stay in school, access resources, and prepare for meaningful futures."
-          />
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6">
-            {donationFocus.map((item) => (
-              <IconCard key={item.title} {...item} />
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       <section className="py-20 lg:py-28 bg-background-soft border-y border-slate-200">
         <div className="site-container">
@@ -418,32 +286,10 @@ export function Donate() {
         <div className="site-container">
           <SectionHeader
             eyebrow="Donation methods"
-            title="Flexible giving methods, ready for secure payment integration."
+            title="Donation Account Details"
             description="Bank transfer is available now, while payment gateway placeholders are prepared for future Paystack and Flutterwave checkout setup."
           />
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-            {donationMethods.map(({ icon: Icon, ...method }) => (
-              <div
-                key={method.title}
-                className="bg-white border border-slate-200 rounded-2xl p-6 shadow-soft"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary-strong">
-                    <Icon className="h-6 w-6" aria-hidden="true" />
-                  </div>
-                  <span className="rounded-full bg-background-soft px-3 py-1 text-xs font-bold text-slate-600">
-                    {method.status}
-                  </span>
-                </div>
-                <h3 className="mt-5 text-xl font-bold text-slate-900">
-                  {method.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">
-                  {method.description}
-                </p>
-              </div>
-            ))}
-          </div>
+          
 
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
             {bankDetails.map(([label, value]) => (
@@ -463,45 +309,7 @@ export function Donate() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="site-container">
-          <SectionHeader
-            eyebrow="Success stories"
-            title="Donations create moments that change what young people believe is possible."
-            description="These stories can be replaced with named beneficiary testimonials as OTSEF publishes verified program updates."
-          />
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {stories.map((story) => (
-              <motion.article
-                key={story.name}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-background-soft"
-              >
-                <img
-                  src={story.image}
-                  alt=""
-                  loading="lazy"
-                  width="640"
-                  height="420"
-                  className="h-56 w-full object-cover"
-                />
-                <div className="p-6">
-                  <p className="text-base leading-7 text-slate-700">
-                    "{story.quote}"
-                  </p>
-                  <div className="mt-5 text-sm font-bold text-slate-900">
-                    {story.name}
-                  </div>
-                  <div className="text-sm text-slate-500">{story.role}</div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      
       <section className="py-20 lg:py-28 bg-background-soft border-y border-slate-200">
         <div className="site-container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
@@ -559,49 +367,6 @@ export function Donate() {
                 </p>
               </details>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 lg:py-24 bg-ink text-white">
-        <div className="site-container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-8">
-              <div className="font-mono text-xs text-blue-200 mb-4 uppercase tracking-wider">
-                Final call to action
-              </div>
-              <h2 className="break-words text-2xl sm:text-4xl md:text-5xl font-black leading-tight text-white">
-                Help turn a child's challenge into a pathway forward.
-              </h2>
-              <p className="mt-5 max-w-2xl text-base md:text-lg leading-8 text-blue-100">
-                Your gift can place books in a library, keep a child learning,
-                support mentorship, and open doors to skills that last beyond a
-                single school term.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 text-sm text-blue-100">
-                <a
-                  href="mailto:contact@otsef.org"
-                  className="inline-flex items-center gap-2 hover:text-white"
-                >
-                  <Mail className="h-4 w-4" aria-hidden="true" />
-                  contact@otsef.org
-                </a>
-                <a
-                  href="tel:+2348028449414"
-                  className="inline-flex items-center gap-2 hover:text-white"
-                >
-                  <Phone className="h-4 w-4" aria-hidden="true" />
-                  +234 802 844 9414
-                </a>
-              </div>
-            </div>
-            <div className="lg:col-span-4 lg:text-right">
-              <DonateButton className="bg-white text-ink hover:bg-primary hover:text-white" />
-              <div className="mt-4 flex items-center gap-2 text-sm text-blue-100 lg:justify-end">
-                <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-                Future gateway-ready donation flow
-              </div>
-            </div>
           </div>
         </div>
       </section>

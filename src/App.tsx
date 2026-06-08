@@ -8,6 +8,7 @@ import {
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
 import { Seo } from './components/Seo'
+import { ChatbotWidget } from './components/ChatbotWidget'
 import { ScrollToTop } from './components/ScrollToTop'
 import { Home } from './pages/Home'
 // Code-split secondary pages for faster initial load
@@ -58,6 +59,7 @@ export function App() {
           </Suspense>
         </main>
         <Footer />
+        <ChatbotWidget />
       </div>
     </Router>
   )

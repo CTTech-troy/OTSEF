@@ -3,18 +3,18 @@ import { defineConfig, loadEnv, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-type ContactRequest = IncomingMessage & {
+type ApiRequest = IncomingMessage & {
   body?: unknown
 }
 
-type ContactResponse = ServerResponse & {
-  status: (code: number) => ContactResponse
+type ApiResponse = ServerResponse & {
+  status: (code: number) => ApiResponse
   json: (payload: unknown) => void
 }
 
-type ContactHandler = (
-  req: ContactRequest,
-  res: ContactResponse,
+type ApiHandler = (
+  req: ApiRequest,
+  res: ApiResponse,
 ) => Promise<void> | void
 
 const serverEnvKeys = [
@@ -26,6 +26,9 @@ const serverEnvKeys = [
   'DONATION_ACCOUNT_NAME',
   'DONATION_BANK',
   'DONATION_ACCOUNT_NUMBER',
+  'CHATBOT_API_URL',
+  'CHATBOT_API_KEY',
+  'CHATBOT_SYSTEM_PROMPT',
 ]
 
 function applyServerEnv(env: Record<string, string>) {
@@ -58,15 +61,15 @@ function readJsonBody(req: IncomingMessage) {
   })
 }
 
-function createContactResponse(res: ServerResponse) {
-  const contactResponse = res as ContactResponse
+function createApiResponse(res: ServerResponse) {
+  const apiResponse = res as ApiResponse
 
-  contactResponse.status = (code: number) => {
+  apiResponse.status = (code: number) => {
     res.statusCode = code
-    return contactResponse
+    return apiResponse
   }
 
-  contactResponse.json = (payload: unknown) => {
+  apiResponse.json = (payload: unknown) => {
     if (!res.headersSent) {
       res.setHeader('Content-Type', 'application/json')
     }
@@ -74,32 +77,37 @@ function createContactResponse(res: ServerResponse) {
     res.end(JSON.stringify(payload))
   }
 
-  return contactResponse
+  return apiResponse
 }
 
-function contactApiDevPlugin(): Plugin {
+function localApiDevPlugin(): Plugin {
+  const routes = new Map([
+    ['/api/contact', './api/contact.js'],
+    ['/api/chat', './api/chat.js'],
+  ])
+
   return {
-    name: 'otsef-contact-api-dev',
+    name: 'otsef-local-api-dev',
     apply: 'serve',
     configureServer(server) {
-      server.middlewares.use('/api/contact', async (req, res, next) => {
-        try {
-          const contactApiUrl = new URL('./api/contact.js', import.meta.url)
-          const handlerModule = await import(
-            `${contactApiUrl.href}?t=${Date.now()}`
-          )
-          const handler = handlerModule.default as ContactHandler
-          const contactReq = req as ContactRequest
+      routes.forEach((modulePath, routePath) => {
+        server.middlewares.use(routePath, async (req, res, next) => {
+          try {
+            const apiUrl = new URL(modulePath, import.meta.url)
+            const handlerModule = await import(`${apiUrl.href}?t=${Date.now()}`)
+            const handler = handlerModule.default as ApiHandler
+            const apiReq = req as ApiRequest
 
-          contactReq.body =
-            req.method === 'POST' || req.method === 'PUT'
-              ? await readJsonBody(req)
-              : {}
+            apiReq.body =
+              req.method === 'POST' || req.method === 'PUT'
+                ? await readJsonBody(req)
+                : {}
 
-          await handler(contactReq, createContactResponse(res))
-        } catch (error) {
-          next(error)
-        }
+            await handler(apiReq, createApiResponse(res))
+          } catch (error) {
+            next(error)
+          }
+        })
       })
     },
   }
@@ -110,6 +118,6 @@ export default defineConfig(({ mode }) => {
   applyServerEnv(loadEnv(mode, process.cwd(), ''))
 
   return {
-    plugins: [react(), tailwindcss(), contactApiDevPlugin()],
+    plugins: [react(), tailwindcss(), localApiDevPlugin()],
   }
 })
