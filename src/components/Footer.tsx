@@ -65,17 +65,17 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <SocialLink
                 icon={<FaTwitter className="w-4 h-4" />}
-                href="#"
+                href="https://twitter.com/otsefng"
                 label="Twitter"
               />
               <SocialLink
                 icon={<FaLinkedinIn className="w-4 h-4" />}
-                href="#"
+                href="https://www.linkedin.com/company/otsefng/"
                 label="LinkedIn"
               />
               <SocialLink
                 icon={<FaInstagram className="w-4 h-4" />}
-                href="#"
+                href="https://instagram.com/otsefng"
                 label="Instagram"
               />
               <SocialLink
