@@ -4,9 +4,6 @@ import {
   ArrowRight,
   CalendarClock,
   CheckCircle2,
-  Mail,
-  Phone,
-  ShieldCheck,
 } from 'lucide-react'
 
 const donationAmounts = [5000, 10000, 25000, 50000]
