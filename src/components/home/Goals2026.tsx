@@ -72,7 +72,7 @@ const impactPhotos = [
     image: '/img/img10.jpg',
     alt: 'Library book handoff during an OTSEF distribution visit',
     title: 'Book Distribution Initiative',
-    location: 'Meiran Public Library Reading Room',
+    location: 'Ipaja Public Library, Lagos',
     date: '2026',
     description:
       'A library handoff helped make the resource available to young readers who rely on shared learning spaces.',

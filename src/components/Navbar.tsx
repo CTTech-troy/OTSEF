@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ArrowRight } from 'lucide-react'
+
 const navLinks = [
   {
     name: 'Home',
@@ -19,8 +20,8 @@ const navLinks = [
     name: 'Contact',
     path: '/contact',
   },
-  
 ]
+
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -32,9 +33,6 @@ export function Navbar() {
     })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-  useEffect(() => {
-    setMobileMenuOpen(false)
-  }, [location.pathname])
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-3' : 'py-5'}`}
@@ -43,9 +41,10 @@ export function Navbar() {
         className={`absolute inset-0 transition-all duration-300 ${isScrolled ? 'bg-white/85 backdrop-blur-md border-b border-slate-200' : 'bg-transparent'}`}
       />
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10 flex items-center justify-between">
+      <div className="site-container relative z-10 flex items-center justify-between">
         <Link
           to="/"
+          onClick={() => setMobileMenuOpen(false)}
           className="flex h-14 w-14 shrink-0 items-center justify-center transition-transform duration-300 hover:scale-105 sm:h-16 sm:w-16"
           aria-label="OTSEF home"
         >
@@ -85,10 +84,14 @@ export function Navbar() {
         </nav>
 
         <Link
-          to="/contact"
-          className="hidden md:inline-flex group items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-primary hover:bg-primary-strong rounded-full transition-all hover:scale-105 shadow-sm"
+          to="/donate"
+          className={`hidden md:inline-flex group items-center justify-center gap-2 px-5 py-2.5 text-sm font-bold text-white rounded-full transition-all hover:scale-105 shadow-glow focus:outline-none focus:ring-2 focus:ring-primary-strong focus:ring-offset-2 ${
+            location.pathname === '/donate'
+              ? 'bg-primary-strong'
+              : 'bg-ink hover:bg-primary-strong'
+          }`}
         >
-          Partner with us
+          Donate Now
           <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </Link>
 
@@ -130,16 +133,18 @@ export function Navbar() {
               <Link
                 key={link.name}
                 to={link.path}
+                onClick={() => setMobileMenuOpen(false)}
                 className={`text-lg font-medium px-4 py-3 rounded-xl ${location.pathname === link.path ? 'bg-slate-100 text-slate-900' : 'text-slate-700'}`}
               >
                 {link.name}
               </Link>
             ))}
             <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 mt-4 text-sm font-semibold text-white bg-primary rounded-full"
+              to="/donate"
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 mt-4 text-sm font-bold text-white bg-ink rounded-full shadow-glow"
             >
-              Partner with us
+              Donate Now
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>

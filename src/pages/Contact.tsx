@@ -1,12 +1,45 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react'
+import { Mail, Phone, MapPin, CheckCircle2, type LucideIcon } from 'lucide-react'
+import { sendContactPayload } from '../lib/contact'
 export function Contact() {
   const [submitted, setSubmitted] = useState(false)
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [confirmationSent, setConfirmationSent] = useState(true)
+  const [confirmationError, setConfirmationError] = useState('')
+  const [error, setError] = useState('')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 5000)
+    setError('')
+    setConfirmationError('')
+    setConfirmationSent(true)
+    setIsSubmitting(true)
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      const result = await sendContactPayload({
+        source: 'Contact page form',
+        name: String(formData.get('name') || ''),
+        email: String(formData.get('email') || ''),
+        interest: String(formData.get('interest') || ''),
+        message: String(formData.get('message') || ''),
+      })
+      setConfirmationSent(result.confirmationSent !== false)
+      setConfirmationError(result.confirmationError || '')
+      form.reset()
+      setSubmitted(true)
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch (sendError) {
+      setError(
+        sendError instanceof Error
+          ? sendError.message
+          : 'Unable to send message right now.',
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
   return (
     <div className="flex flex-col bg-background">
@@ -14,7 +47,7 @@ export function Contact() {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="max-w-3xl">
             <div className="font-mono text-xs text-primary-strong mb-4 uppercase tracking-wider">
-              — Contact
+              Contact
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 tracking-tight leading-[1.05] mb-6">
               Let's{' '}
@@ -42,14 +75,14 @@ export function Contact() {
                 <ContactItem
                   icon={Mail}
                   label="Email"
-                  value=" contactotsef@gmail.com"
-                  href="mailto: contactotsef@gmail.com"
+                  value="contact@otsef.org"
+                  href="mailto:contact@otsef.org"
                 />
                 <ContactItem
                   icon={Phone}
                   label="Phone"
                   value="+234 802 844 9414 "
-                  href="tel:+234 802 844 9414 "
+                  href="tel:+2348028449414"
                 />
                 <ContactItem
                   icon={MapPin}
@@ -63,10 +96,10 @@ export function Contact() {
                   Hours
                 </div>
                 <div className="text-slate-900 font-medium mb-1">
-                  Monday — Friday
+                  Monday - Friday
                 </div>
                 <div className="text-slate-600 text-sm">
-                  9:00 AM — 5:00 PM WAT
+                  9:00 AM - 5:00 PM WAT
                 </div>
               </div>
             </div>
@@ -91,8 +124,15 @@ export function Contact() {
                     Message received
                   </h3>
                   <p className="text-slate-600">
-                    Thank you. We'll be in touch within 48 hours.
+                    {confirmationSent
+                      ? "Thank you. We've sent a confirmation email and will be in touch within 48 hours."
+                      : 'Your message reached OTSEF, but the confirmation email was not delivered. Please check the email address or mail server settings.'}
                   </p>
+                  {!confirmationSent && confirmationError && (
+                    <p className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">
+                      {confirmationError}
+                    </p>
+                  )}
                 </motion.div>
               ) : (
                 <form
@@ -109,6 +149,7 @@ export function Contact() {
                       </label>
                       <input
                         id="c-name"
+                        name="name"
                         required
                         type="text"
                         className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-strong transition-shadow"
@@ -123,6 +164,7 @@ export function Contact() {
                       </label>
                       <input
                         id="c-email"
+                        name="email"
                         required
                         type="email"
                         className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-strong transition-shadow"
@@ -138,6 +180,7 @@ export function Contact() {
                     </label>
                     <select
                       id="c-subject"
+                      name="interest"
                       className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-strong transition-shadow"
                     >
                       <option>Partnership</option>
@@ -156,16 +199,23 @@ export function Contact() {
                     </label>
                     <textarea
                       id="c-message"
+                      name="message"
                       required
                       rows={6}
                       className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-strong transition-shadow resize-none"
                     />
                   </div>
+                  {error && (
+                    <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                      {error}
+                    </p>
+                  )}
                   <button
                     type="submit"
-                    className="w-full py-4 bg-primary hover:bg-primary-strong text-white rounded-xl font-semibold shadow-glow transition-all"
+                    disabled={isSubmitting}
+                    className="w-full py-4 bg-primary hover:bg-primary-strong disabled:cursor-not-allowed disabled:opacity-70 text-white rounded-xl font-semibold shadow-glow transition-all"
                   >
-                    Send message
+                    {isSubmitting ? 'Sending...' : 'Send message'}
                   </button>
                 </form>
               )}
@@ -182,7 +232,7 @@ function ContactItem({
   value,
   href,
 }: {
-  icon: any
+  icon: LucideIcon
   label: string
   value: string
   href?: string

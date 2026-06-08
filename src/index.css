@@ -5,6 +5,12 @@
 @config "../tailwind.config.js";
 /* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   :root {
     --background: #ffffff;
     --background-soft: #f8fafc;
@@ -29,6 +35,9 @@
     background-color: var(--background);
     color: var(--on-surface);
   }
+  #root {
+    overflow-x: hidden;
+  }
   body {
     @apply font-sans antialiased;
     overflow-x: hidden;
@@ -45,6 +54,24 @@
   }
 }
 @layer utilities {
+  .site-container {
+    width: min(calc(100% - 3rem), 18rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 640px) {
+    .site-container {
+      width: min(calc(100% - 3rem), 80rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-container {
+      width: min(calc(100% - 6rem), 80rem);
+    }
+  }
+
   .glass-panel {
     @apply bg-white/70 backdrop-blur-xl border border-slate-200/70;
     box-shadow: 0 8px 32px -8px rgba(15, 23, 42, 0.08);

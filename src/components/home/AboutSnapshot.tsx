@@ -4,7 +4,7 @@ export function AboutSnapshot() {
     <section id="about" className="py-24 lg:py-32 bg-background-soft">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-          {/* Image â€” the single about image, lazy loaded */}
+          {/* Single about image, lazy loaded */}
           <motion.div
             initial={{
               opacity: 0,

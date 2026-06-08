@@ -96,10 +96,10 @@ export function Hero() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              to="/projects"
+              to="/donate"
               className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-900 bg-white border border-slate-200 hover:border-slate-300 rounded-full transition-all"
             >
-              See our work
+              Donate Now
             </Link>
           </motion.div>
 

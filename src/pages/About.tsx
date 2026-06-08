@@ -358,7 +358,7 @@ export function About() {
               succeed.
             </blockquote>
 
-            <div className="text-lg leading-relaxed text-slate-600">
+            <div className="text-justify text-lg leading-relaxed text-slate-600">
               <figure
                 className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft-lg md:float-left md:mb-6 md:mr-10 md:w-[min(44%,28rem)] lg:w-[min(40%,30rem)]"
               >

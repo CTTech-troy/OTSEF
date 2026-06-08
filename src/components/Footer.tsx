@@ -27,7 +27,10 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col items-center gap-5 md:col-span-1">
-            <nav className="flex items-center gap-6" aria-label="Footer">
+            <nav
+              className="flex flex-wrap items-center justify-center gap-6"
+              aria-label="Footer"
+            >
               <Link
                 to="/"
                 className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
@@ -51,6 +54,12 @@ export function Footer() {
                 className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
               >
                 Contact
+              </Link>
+              <Link
+                to="/donate"
+                className="text-sm font-bold text-primary-strong hover:text-slate-900 transition-colors"
+              >
+                Donate
               </Link>
             </nav>
             <div className="flex items-center gap-3">

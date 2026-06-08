@@ -1,12 +1,45 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle2, Mail, Phone, MapPin } from 'lucide-react'
+import { sendContactPayload } from '../../lib/contact'
 export function InlineContact() {
   const [submitted, setSubmitted] = useState(false)
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [confirmationSent, setConfirmationSent] = useState(true)
+  const [confirmationError, setConfirmationError] = useState('')
+  const [error, setError] = useState('')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 5000)
+    setError('')
+    setConfirmationError('')
+    setConfirmationSent(true)
+    setIsSubmitting(true)
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      const result = await sendContactPayload({
+        source: 'Home page inline contact form',
+        name: String(formData.get('name') || ''),
+        email: String(formData.get('email') || ''),
+        interest: String(formData.get('interest') || ''),
+        message: String(formData.get('message') || ''),
+      })
+      setConfirmationSent(result.confirmationSent !== false)
+      setConfirmationError(result.confirmationError || '')
+      form.reset()
+      setSubmitted(true)
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch (sendError) {
+      setError(
+        sendError instanceof Error
+          ? sendError.message
+          : 'Unable to send message right now.',
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
   return (
     <section id="contact" className="py-24 lg:py-32 bg-background-soft">
@@ -14,13 +47,13 @@ export function InlineContact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-5">
             <div className="font-mono text-xs text-primary-strong mb-4 uppercase tracking-wider">
-              â€” Contact
+              Contact
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.05] mb-8">
               Let's start a conversation.
             </h2>
             <p className="text-lg text-slate-600 leading-relaxed mb-10 max-w-md">
-              Whether you want to partner, sponsor, or simply learn more â€” we'd
+              Whether you want to partner, sponsor, or simply learn more - we'd
               love to hear from you.
             </p>
 
@@ -41,7 +74,7 @@ export function InlineContact() {
                   <Phone className="w-5 h-5 text-primary-strong" />
                 </div>
                 <span className="text-slate-700 font-medium">
-                  +234 800 000 0000
+                  +234 802 844 9414
                 </span>
               </div>
               <div className="flex items-center gap-4">
@@ -49,7 +82,7 @@ export function InlineContact() {
                   <MapPin className="w-5 h-5 text-primary-strong" />
                 </div>
                 <span className="text-slate-700 font-medium">
-                  Victoria Island, Lagos, Nigeria
+                  No 21, Kosebinu Road, Meiran, Lagos, Nigeria
                 </span>
               </div>
             </div>
@@ -75,8 +108,15 @@ export function InlineContact() {
                   Message received
                 </h3>
                 <p className="text-slate-600">
-                  Thank you for reaching out. We'll be in touch within 48 hours.
+                  {confirmationSent
+                    ? "Thank you for reaching out. We've sent a confirmation email and will be in touch within 48 hours."
+                    : 'Your message reached OTSEF, but the confirmation email was not delivered. Please check the email address or mail server settings.'}
                 </p>
+                {!confirmationSent && confirmationError && (
+                  <p className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">
+                    {confirmationError}
+                  </p>
+                )}
               </motion.div>
             ) : (
               <form
@@ -93,6 +133,7 @@ export function InlineContact() {
                     </label>
                     <input
                       id="name"
+                      name="name"
                       required
                       type="text"
                       className="w-full bg-background-soft border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-strong transition-shadow"
@@ -107,6 +148,7 @@ export function InlineContact() {
                     </label>
                     <input
                       id="email"
+                      name="email"
                       required
                       type="email"
                       className="w-full bg-background-soft border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-strong transition-shadow"
@@ -122,6 +164,7 @@ export function InlineContact() {
                   </label>
                   <select
                     id="subject"
+                    name="interest"
                     className="w-full bg-background-soft border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-strong transition-shadow"
                   >
                     <option>Partnership</option>
@@ -140,16 +183,23 @@ export function InlineContact() {
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     required
                     rows={5}
                     className="w-full bg-background-soft border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-strong transition-shadow resize-none"
                   />
                 </div>
+                {error && (
+                  <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                    {error}
+                  </p>
+                )}
                 <button
                   type="submit"
-                  className="w-full py-4 bg-primary hover:bg-primary-strong text-white rounded-xl font-semibold shadow-glow transition-all"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-primary hover:bg-primary-strong disabled:cursor-not-allowed disabled:opacity-70 text-white rounded-xl font-semibold shadow-glow transition-all"
                 >
-                  Send message
+                  {isSubmitting ? 'Sending...' : 'Send message'}
                 </button>
               </form>
             )}
